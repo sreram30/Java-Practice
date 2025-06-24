@@ -1,33 +1,44 @@
-import java.util.Scanner;
-
 public class ams {
     public static void main(String[] args) {
-        Scanner s=new Scanner(System.in);
-		System.out.println("enter the num:"); 
-        int n=s.nextInt();
-        System.out.println("Amstrong"+amst(n));
+        int num = 407, len;
+
+        // function to get order(length)
+        len = order(num);
+
+        // check if Armstrong
+        if (armstrong(num, len))
+            System.out.println(num + " is armstrong");
+        else
+            System.out.println(num + " is armstrong");
 
     }
-    static boolean amst(int a){
-        int temp=a;
-        int count=0;
-        int sum=0;  
-        while(a>0){
-            temp=temp/10;
-            count++;
+
+
+    static int order(int x) {
+        int len = 0;
+        while (x != 0) {
+            len++;
+            x = x / 10;
         }
-        System.out.println("digits:"+count);
-        temp=a;
-        while(a>0){
-            int last = temp %10;
-            sum=(int)(sum+Math.pow(last,count));
-            temp=temp/10;
-        }
-        if(sum==a){
-            return true;  
-        }
-        else{
-            return false;
-        }
+        return len;
     }
-}	
+
+    static boolean armstrong(int num, int len) {
+
+        int sum = 0, temp, digit;
+        temp = num;
+
+        // loop to extract digit, find power & add to sum
+        while (temp != 0) {
+            // extract digit
+            digit = temp % 10;
+
+            // add power to sum
+            sum = sum + (int) Math.pow(digit, len);
+            temp /= 10;
+        }
+        ;
+
+        return num == sum;
+    }
+}
